@@ -26,7 +26,7 @@ class NatsConfig:
 class Config:
     db: DatabaseConfig
     nats: NatsConfig
-    outbox_poll_interval: int = 60
+    process_delay: int
 
 
 def load_config(path: str | None = None):
@@ -35,6 +35,7 @@ def load_config(path: str | None = None):
     return Config(
         db=DatabaseConfig(url=env("ENV_DB__URL")),
         nats=NatsConfig(url=env("ENV_NATS__URL")),
+        process_delay=int(env("PROCESS_DELAY")),
     )
 
 

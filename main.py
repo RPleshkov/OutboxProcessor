@@ -8,7 +8,7 @@ from config import settings
 logger = logging.getLogger(__name__)
 
 logging.basicConfig(
-    level=logging.WARNING,
+    level=logging.INFO,
     format="[%(asctime)s] #%(levelname)-8s %(filename)s:"
     "%(lineno)d - %(name)s - %(message)s",
 )
@@ -21,7 +21,7 @@ async def main():
             rows = get_pending_or_failed_outbox_rows()
 
             if not rows:
-                logger.info("No outbox messages to process")
+                logger.debug("No outbox messages to process")
 
             else:
                 published, failed = await publish_to_nats(rows)
@@ -36,7 +36,7 @@ async def main():
         except Exception as e:
             logger.exception(f"Unexpected error in worker loop: {e}")
 
-        await asyncio.sleep(settings.outbox_poll_interval)
+        await asyncio.sleep(settings.process_delay)
 
 
 if __name__ == "__main__":

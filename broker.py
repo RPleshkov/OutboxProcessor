@@ -31,7 +31,7 @@ async def publish_to_nats(
                     headers={"Nats-Msg-Id": message["message_id"]},
                 )
                 published.add(key)
-                logger.info(f"Published message to {message['to_email']}")
+                logger.debug(f"Published message to {message['to_email']}")
             except Exception as e:
                 failed.add(key)
                 logger.warning(

@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from typing import Generator, Sequence
 from uuid import UUID
 
-from sqlalchemy import Row, create_engine, select, update
+from sqlalchemy import create_engine, select, update
 from sqlalchemy.orm import Session, sessionmaker
 
 from config import settings
