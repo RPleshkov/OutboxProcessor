@@ -33,8 +33,8 @@ def load_config(path: str | None = None):
     env = Env()
     env.read_env(path)
     return Config(
-        db=DatabaseConfig(url=env("ENV_DB__URL")),
-        nats=NatsConfig(url=env("ENV_NATS__URL")),
+        db=DatabaseConfig(url=env("DB_URL")),
+        nats=NatsConfig(url=env("NATS_URL")),
         process_delay=int(env("PROCESS_DELAY")),
     )
 
