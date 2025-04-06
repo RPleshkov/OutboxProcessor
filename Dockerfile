@@ -5,7 +5,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /email_worker
 
-RUN pip install --no-cache-dir poetry
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir poetry
 
 COPY pyproject.toml poetry.lock* ./
 
